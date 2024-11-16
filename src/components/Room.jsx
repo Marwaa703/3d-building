@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import Wall from "./Wall";
 import RoomLight from "./Light";
 
@@ -62,6 +63,10 @@ const Room = ({ position }) => {
       <RoomLight position={[0, 0.5, 0]} isOn={lightOn} />
     </group>
   );
+};
+
+Room.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
 };
 
 export default Room;

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Map } from "react-map-gl"; // Use Map component instead of StaticMap
-import "mapbox-gl/dist/mapbox-gl.css"; // Import Mapbox CSS for rendering
+import { useEffect, useState } from "react";
+import { Map } from "react-map-gl";
+import PropTypes from "prop-types";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const MapComponent = ({ geolocation }) => {
   const [viewport, setViewport] = useState({
@@ -8,7 +9,7 @@ const MapComponent = ({ geolocation }) => {
     height: "100%",
     latitude: geolocation.lat,
     longitude: geolocation.lon,
-    zoom: 12, // Adjust zoom level based on your location
+    zoom: 12,
   });
 
   useEffect(() => {
@@ -23,18 +24,25 @@ const MapComponent = ({ geolocation }) => {
         left: 0,
         width: "100%",
         height: "100%",
-        zIndex: 0, // Ensure the map is behind the 3D canvas
+        zIndex: 0,
       }}
     >
       <Map
         initialViewState={viewport}
         onMove={({ viewState }) => setViewport(viewState)}
-        mapStyle="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" // Direct OpenStreetMap tile URL
-        mapboxApiAccessToken={null} // No Mapbox token required
+        mapStyle="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        mapboxApiAccessToken={null}
         onLoad={() => console.log("Map Loaded")}
       />
     </div>
   );
+};
+
+MapComponent.propTypes = {
+  geolocation: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default MapComponent;

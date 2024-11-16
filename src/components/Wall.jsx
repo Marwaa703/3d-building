@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const Wall = ({ position, rotation, initialColor, isWindow, onClick }) => {
   const [color, setColor] = useState(initialColor);
@@ -7,7 +8,7 @@ const Wall = ({ position, rotation, initialColor, isWindow, onClick }) => {
     setColor((prevColor) =>
       prevColor === initialColor ? "lightcoral" : initialColor
     );
-    if (onClick) onClick(); // Pass callback if needed for light toggle
+    if (onClick) onClick(); 
   };
 
   return (
@@ -15,11 +16,19 @@ const Wall = ({ position, rotation, initialColor, isWindow, onClick }) => {
       <planeGeometry args={[2, 1]} />
       <meshStandardMaterial
         color={color}
-        opacity={isWindow ? 0.5 : 1} // Windows are semi-transparent
+        opacity={isWindow ? 0.5 : 1}
         transparent={isWindow}
       />
     </mesh>
   );
+};
+
+Wall.propTypes = {
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
+  rotation: PropTypes.arrayOf(PropTypes.number).isRequired,
+  initialColor: PropTypes.string.isRequired,
+  isWindow: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default Wall;
