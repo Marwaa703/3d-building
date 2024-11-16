@@ -3,6 +3,9 @@
 ## Description
 This project is a 3D visualization of a building built with React and [three.js](https://threejs.org/), enabling users to interact with a 3D model of the building in real-time. The application leverages Vite for fast development and bundling.
 
+## Live demo 
+- [3d-Building](https://3d-building-woad.vercel.app/)
+
 ## Features
 - **Interactive 3D Building Model**: A detailed 3D model of a building that can be explored interactively.
 - **Camera Controls**: Rotate, zoom, and move around the building model for a better view of its features.
